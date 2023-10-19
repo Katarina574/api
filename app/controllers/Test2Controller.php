@@ -8,6 +8,7 @@ class Test2Controller extends Controller
 {
     public function indexAction()
     {
+
         if ($this->request->isPost()) { //kad stavim uslov za file upload on tada ne prepoznaje da je fajl upload-ovan
             $name = $this->request->getPost('name');
             $file = $this->request->getUploadedFiles('file');
@@ -33,8 +34,19 @@ class Test2Controller extends Controller
             } else {
                 $message = "Greska pri registraciji;";
             }
-
+            $tempDir = sys_get_temp_dir();
+            $td = "System temporary directory je: " . $tempDir;
+            $this->view->setVar('td', $td);
+            if (is_writable($tempDir)) {
+                // The directory is writable.
+                $a ="The directory is writable.";
+                $this->view->setVar('a', $a);
+            } else {
+                $a ="The directory is not writable.";
+                $this->view->setVar('a', $a);
+            }
             $this->view->message = $message;
         }
+
     }
 }
