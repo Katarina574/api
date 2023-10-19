@@ -8,8 +8,10 @@ class Test2 extends Model
     public $id;
     public $name;
     public $link;
+    public $file;
     public $weather;
     public $weatherDescription;
     public $deletedAt;
+    public $ttttt;
 
 }
