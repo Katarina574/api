@@ -8,11 +8,17 @@ class Test2Controller extends Controller
 {
     public function indexAction()
     {
-
-        if ($this->request->isPost()) { //kad stavim uslov za file upload on tada ne prepoznaje da je fajl upload-ovan
+        if ($this->request->isPost()) {
             $name = $this->request->getPost('name');
-            $file = $this->request->getUploadedFiles('file');
-
+            if ($this->request->hasFiles()) {
+                $files = $this->request->getUploadedFiles();
+                if (count($files) === 1) {
+                    $file = $files[0];
+                    $fileName = $file->getName();
+                } else {
+                    $message = "Samo jedan fajl molim";
+                }
+            }
             $url = 'https://api.openweathermap.org/data/2.5/weather?lat=43.3211301&lon=21.8959232&appid=60825efadeb08154a146559d1016ff34';
             $response = file_get_contents($url);
             $data = json_decode($response, true);
