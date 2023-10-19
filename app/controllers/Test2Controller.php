@@ -19,11 +19,15 @@ class Test2Controller extends Controller
             $user->name = $name;
             $user->weather = $data['main']['temp'];
 
-            if ($user->save()) {
-                $this->flash->success('Podaci su uspešno sačuvani.');
+            $success = $user->save();
+
+            if ($success) {
+                $message = "Thanks for registering!";
             } else {
-                $this->flash->error('Greska');
+                $message = "Greska pri registraciji;";
             }
+
+            $this->view->message = $message;
         }
     }
 }
