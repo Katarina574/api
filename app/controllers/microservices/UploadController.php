@@ -23,7 +23,7 @@ class UploadController extends Controller
                 $data = json_decode($response, true);
 
                 //cuvam podatke o vremenu u bazi
-                $fileRecord = new FileModel();
+                $fileRecord = new File();
                 $fileRecord->name = $file->getName();
                 $fileRecord->link = $newFileName;
                 $fileRecord->temperature = $data['main']['temp'];

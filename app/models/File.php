@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Mvc\Model;
 
-class FileModel extends Model
+class File extends Model
 {
     public $id;
     public $name;

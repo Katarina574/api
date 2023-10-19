@@ -12,9 +12,9 @@ class FileController extends Controller
 
         if ($request->isGet()) {
             //uslov - izlistaj sve fajlove koji nisu oznaceni kao obrisani, jer oni koji jesu umesto null imaju trenutno vreme - soft delete
-//            $files = FileModel::find([
+//            $files = File::find([
 //                'conditions' => 'deletedAt IS NULL',
-//            ]);
+//            ]); //uslov nije dobar, pogledaj zasto i sredi
 
             $fileList = [];
             foreach ($files as $file) {
@@ -43,10 +43,10 @@ class FileController extends Controller
 
         if ($request->isDelete()) {
             //nadji fajl po id-u
-            $file = FileModel::findFirst($id);
+            $file = File::findFirst($id);
 
             if ($file) {
-                //posstavi deletedAt na trenutno vreme za "meko" brisanje
+                //posstavi deletedAt na trenutno vreme za soft brisanje
                 $file->deletedAt = date('Y-m-d H:i:s');
                 $file->save();
 

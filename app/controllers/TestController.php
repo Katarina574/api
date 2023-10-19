@@ -16,7 +16,7 @@ class TestController extends Controller
             $maxFileSize = 5242880; // 5 MB
 
 //            if (in_array($file->getExtension(), $allowedExtensions) && $file->getSize() <= $maxFileSize) {
-//                $newFileName = uniqid() . '.' . $file->getExtension();
+//                $newFileName = uniqid() . '.' . $file->getExtension(); //uslov proveri i sredi
             $newFileName = uniqid();
 
             //poziv weather api-ja
@@ -26,7 +26,7 @@ class TestController extends Controller
             $data = json_decode($response, true);
 
             //cuvam podatke o vremenu u bazi
-            $fileRecord = new FileModel();
+            $fileRecord = new File();
 //                $fileRecord->name = $file->getName();
             $fileRecord->link = $newFileName;
             $fileRecord->temperature = $data['main']['temp'];
@@ -53,10 +53,10 @@ class TestController extends Controller
 
         if ($request->isGet()) {
             //uslov - izlistaj sve fajlove koji nisu oznaceni kao obrisani, jer oni koji jesu umesto null imaju trenutno vreme - soft delete
-//            $files = FileModel::find([
+//            $files = File::find([
 //                'conditions' => 'deletedAt IS NULL',
 //            ]);
-//            $files = FileModel::find();
+//            $files = File::find();
 
             $fileList = [];
             foreach ($files as $file) {
@@ -85,7 +85,7 @@ class TestController extends Controller
 
         if ($request->isDelete()) {
             //nadji fajl po id-u
-            $file = FileModel::findFirst($id);
+            $file = File::findFirst($id);
 
             if ($file) {
                 //posstavi deletedAt na trenutno vreme za "meko" brisanje

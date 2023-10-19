@@ -8,12 +8,20 @@ defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirn
 defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 return new \Phalcon\Config\Config([
+//    'database' => [
+//        'adapter' => 'mysql',
+//        'host' => '172.28.0.3',
+//        'username' => 'katarinakat',
+//        'password' => 'Sifra123!',
+//        'dbname' => 'files_database',
+//    ],
     'database' => [
         'adapter' => 'mysql',
-        'host' => '172.28.0.3',
+        'host' => '172.21.0.2',
         'username' => 'katarinakat',
         'password' => 'Sifra123!',
-        'dbname' => 'files_database',
+        'dbname' => 'api_database',
+        'charset'     => 'utf8mb4',
     ],
     'application' => [
         'appDir'         => APP_PATH . '/',
