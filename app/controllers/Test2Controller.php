@@ -10,10 +10,24 @@ class Test2Controller extends Controller
     {
         if ($this->request->isPost()) {
             $name = $this->request->getPost('name');
+            var_dump($_POST);
+            var_dump($_FILES);
+            $this->view->uploadedFiles = $_FILES;
+//            $files = $this->request->getUploadedFiles();
+//            $file = $files[0];
+//            $bool = $file->isUploadedFile();
+//            $err = $file->getError();
+//            $fileName = $file->getName();
+//            $this->view->setVar('bool', $bool);
+//            $this->view->setVar('err', $err);
+//            $this->view->setVar(' $fileName', $fileName);
+
             if ($this->request->hasFiles()) {
-                $files = $this->request->getUploadedFiles();
+                $files = $this->request->getUploadedFiles('file');
                 if (count($files) === 1) {
                     $file = $files[0];
+                    $bool = $file->isUploadedFile();
+                    $err = $file->getError();
                     $fileName = $file->getName();
                 } else {
                     $message = "Samo jedan fajl molim";
@@ -45,10 +59,10 @@ class Test2Controller extends Controller
             $this->view->setVar('td', $td);
             if (is_writable($tempDir)) {
                 // The directory is writable.
-                $a ="The directory is writable.";
+                $a = "The directory is writable.";
                 $this->view->setVar('a', $a);
             } else {
-                $a ="The directory is not writable.";
+                $a = "The directory is not writable.";
                 $this->view->setVar('a', $a);
             }
             $this->view->message = $message;

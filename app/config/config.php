@@ -17,7 +17,7 @@ return new \Phalcon\Config\Config([
 //    ],
     'database' => [
         'adapter' => 'mysql',
-        'host' => '172.21.0.2',
+        'host' => '172.18.0.4',
         'username' => 'katarinakat',
         'password' => 'Sifra123!',
         'dbname' => 'api_database',
