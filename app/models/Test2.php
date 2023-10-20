@@ -13,5 +13,6 @@ class Test2 extends Model
     public $weatherDescription;
     public $deletedAt;
     public $ttttt;
+    public $file_data;
 
 }
