@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #COPY . /app
 # Expose port 9000 for PHP-FPM
-EXPOSE 9000
+#EXPOSE 9000
 
 
 # Start PHP-FPM
